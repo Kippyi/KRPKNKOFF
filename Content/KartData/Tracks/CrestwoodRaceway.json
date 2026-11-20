@@ -1,0 +1,46 @@
+{
+  // Crestwood Raceway v2 (fictional, designed for this game): 951 m, 8 m wide, 7.5 m of elevation change.
+  // Sector 1 FAST, CLIMBING: 137 m straight with a hump -> T1 long banked right sweeper (5 deg) climbing ->
+  //   uphill CHICANE (R10 / R8 / R14) with HIGH rounded kerbs on the insides (jump them to straight-line it).
+  // Sector 2 FAST -> SLOW, DOWNHILL: crest at +6 m -> banked downhill sweeper across the top (4 deg) ->
+  //   downhill braking into the 201 deg R9 HAIRPIN at the bottom, OFF-CAMBER exit (-3 deg).
+  // Sector 3 SLOW / TECHNICAL, ROLLING: R11 127 deg, R13, a dip to -1.5 m through the R11 180 deg left,
+  //   rise to +2 m, banked (3 deg) R14 final corner falling onto the straight.
+  // Max grade 5.2 %, tightest crest R 218 m (light but planted at 100 km/h), min clearance 31.5 m.
+  // Control points: [x, y, camber_deg, elevation_m] (camber + banked / - off-camber; both optional, smoothed).
+  "name": "Crestwood Raceway",
+  "width": 8.0,
+  "kerbRadius": 40.0,
+  "controlPoints": [[0,0,0,0],[80,0,0,0.8],[150,0,0,1.0],[190,12,3,2.4],[212,40,5,3.6],[218,75,3,4.6],[212,95,0,5.2],
+                    [219,110,0,5.6],[212,125,0,5.9],[214,150,0,6.0],[205,180,2,5.2],[180,200,4,3.8],[145,205,2,2.4],
+                    [115,195,0,1.2],[95,205,0,0.4],[78,220,-1,0.0],[60,210,-3,0.0],[62,190,-2,0.2],[80,175,0,0.4],
+                    [75,150,0,0.0],[50,140,0,-1.0],[30,150,0,-1.5],[10,140,0,-1.0],[5,115,0,0.2],[25,95,0,1.4],
+                    [20,70,0,2.0],[-10,60,0,1.8],[-40,70,1,1.4],[-60,55,3,0.9],[-55,30,2,0.4],[-35,8,0,0.0]],
+  // Kerbs by control-point range (inclusive). side: inside | outside | both; type: flat (25 mm) |
+  // rumble (saw-tooth ridges) | high (rounded 40 mm hump, jumpable). Exit kerbs = "outside" at the end of a
+  // corner. Every run is tapered at both ends.
+  "kerbs": [
+    {"from": 2, "to": 4, "side": "inside", "type": "rumble"},
+    {"from": 4, "to": 5, "side": "outside", "type": "rumble"},
+    {"from": 6, "to": 6, "side": "inside", "type": "high"},
+    {"from": 7, "to": 7, "side": "inside", "type": "high"},
+    {"from": 8, "to": 8, "side": "inside", "type": "high"},
+    {"from": 9, "to": 9, "side": "outside", "type": "flat"},
+    {"from": 11, "to": 11, "side": "inside", "type": "rumble"},
+    {"from": 11, "to": 12, "side": "outside", "type": "rumble"},
+    {"from": 13, "to": 14, "side": "inside", "type": "flat"},
+    {"from": 14, "to": 14, "side": "outside", "type": "flat"},
+    {"from": 15, "to": 17, "side": "inside", "type": "flat"},
+    {"from": 17, "to": 18, "side": "outside", "type": "flat"},
+    {"from": 18, "to": 19, "side": "inside", "type": "flat"},
+    {"from": 19, "to": 19, "side": "outside", "type": "flat"},
+    {"from": 20, "to": 20, "side": "inside", "type": "flat"},
+    {"from": 21, "to": 23, "side": "inside", "type": "flat"},
+    {"from": 23, "to": 23, "side": "outside", "type": "flat"},
+    {"from": 24, "to": 25, "side": "inside", "type": "flat"},
+    {"from": 25, "to": 25, "side": "outside", "type": "flat"},
+    {"from": 26, "to": 26, "side": "inside", "type": "rumble"},
+    {"from": 27, "to": 29, "side": "inside", "type": "flat"},
+    {"from": 29, "to": 30, "side": "outside", "type": "rumble"}
+  ]
+}

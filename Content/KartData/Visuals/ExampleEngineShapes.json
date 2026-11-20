@@ -1,0 +1,19 @@
+// Example visual rig (format reference). Uses engine shapes so it works in any project; replace the
+// "mesh" paths with your own static mesh assets (Blender export, Fab/Megascans, ...).
+// Selected with -KartVisual=ExampleEngineShapes.json, or via "visualFile" in a kart config.
+//
+//   hide:  procedural placeholders to hide: frame, bodywork, driver, steeringWheel, axle, wheels
+//   parts: attach = chassis | driver           -> location in the KART FRAME (metres forward of the
+//                                                 rear axle, y left, z up from the ground)
+//          attach = wheelFL|wheelFR|wheelRL|wheelRR|steeringWheel -> location = local offset (metres)
+//          rotationDeg = [pitch, yaw, roll], scale = [x, y, z] (UE mesh units: engine shapes are 100 cm)
+{
+  "hide": ["bodywork"],
+  "parts": [
+    { "mesh": "/Engine/BasicShapes/Cube.Cube",     "attach": "chassis", "location": [1.24, 0.0, 0.13],  "rotationDeg": [8, 0, 0], "scale": [0.26, 0.78, 0.12] },
+    { "mesh": "/Engine/BasicShapes/Cube.Cube",     "attach": "chassis", "location": [0.50, 0.56, 0.14], "scale": [0.66, 0.14, 0.14] },
+    { "mesh": "/Engine/BasicShapes/Cube.Cube",     "attach": "chassis", "location": [0.50, -0.56, 0.14], "scale": [0.66, 0.14, 0.14] },
+    { "mesh": "/Engine/BasicShapes/Cone.Cone",     "attach": "chassis", "location": [0.03, -0.38, 0.33], "scale": [0.18, 0.18, 0.15] },
+    { "mesh": "/Engine/BasicShapes/Sphere.Sphere", "attach": "wheelFL", "location": [0.0, 0.0, 0.07],   "scale": [0.05, 0.05, 0.05] }
+  ]
+}

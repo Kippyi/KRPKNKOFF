@@ -1,0 +1,8 @@
+{
+  // The original Milestone-1 test circuit (~520 m): hairpin, fast sweeper, esses, long straight.
+  "name": "Test Circuit",
+  "width": 8.0,
+  "kerbRadius": 40.0,
+  // Centre-line control points in metres (closed Catmull-Rom loop, local X/Y), start/finish at the first point.
+  "controlPoints": [[0,0],[60,0],[95,8],[110,30],[105,55],[80,65],[55,58],[40,40],[20,35],[0,45],[-15,70],[-40,78],[-65,65],[-70,40],[-55,20],[-30,5]]
+}

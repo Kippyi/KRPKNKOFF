@@ -1,0 +1,11 @@
+newmtl tripo_material_6db868c0_208c_4877_8206_e2a4911f312b
+Kd 1.000000000 1.000000000 1.000000000
+d 1.000000000
+illum 2
+map_Kd racing_suit_3d_model_basecolor.jpg
+Pr 1.000000000
+Pm 1.000000000
+map_Pr racing_suit_3d_model_roughness.png
+map_Pm racing_suit_3d_model_metallic.png
+norm racing_suit_3d_model_normal.jpg
+

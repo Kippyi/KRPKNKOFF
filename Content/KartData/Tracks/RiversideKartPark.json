@@ -1,0 +1,10 @@
+{
+  // Riverside Kart Park (fictional, designed for this game): 1014 m, 8 m wide.
+  // 161 m main straight -> T1 hairpin (R12, 173 deg, main passing spot) -> esses -> fast sweepers ->
+  // R21 92 deg left -> back-section kinks -> technical complex (R12 105 deg left, R13 + R17 rights) ->
+  // long fast left -> tight R10 final corner onto the straight. Min clearance between sections 35 m.
+  "name": "Riverside Kart Park",
+  "width": 8.0,
+  "kerbRadius": 40.0,
+  "controlPoints": [[0,0],[90,0],[168,0],[193,5],[203,20],[195,34],[175,37],[150,45],[120,55],[100,75],[95,100],[110,125],[140,135],[175,130],[200,140],[215,165],[205,190],[178,201],[150,200],[128,192],[106,195],[88,205],[60,215],[30,210],[15,190],[25,165],[10,140],[-20,135],[-45,120],[-50,90],[-40,60],[-30,30],[-20,8]]
+}

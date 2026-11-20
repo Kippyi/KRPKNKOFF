@@ -1,0 +1,267 @@
+// RESEARCH VARIANT (not a default class): distributed-mass frame chain with ESTIMATED mass layout.
+// With this layout the kart is power-oversteer prone (see Docs/Milestone3Classes.md). Kept for
+// comparison once corner weights / driver position / twist-rig data exist.
+// 125cc Rotax Max Senior (MAX EVO) - baseline (Milestone 2 calibration, see Docs/Milestone2Log.md).
+// Provenance tags: VERIFIED (cited in Docs/RotaxMaxBaseline.md), ESTIMATE (derived), ASSUMPTION (placeholder).
+// Units: SI; angles in degrees where the key ends in "Deg".
+{
+  "name": "125cc Rotax Max Senior [RESEARCH: distributed frame]",
+  "visualFile": "BogKart.json",   // imported bodywork (Content/KartData/Visuals); remove for the procedural kart
+  "classId": "rotax_max_senior_distframe",
+
+  "chassis": {
+    "mass": 162.0,                    // VERIFIED (series-dependent): kart + driver minimum
+    "cogHeight": 0.27,                // ASSUMPTION: needs tilt-table measurement
+    "frontWeightFraction": 0.42,      // ASSUMPTION: typical 40-44 %, measure on corner scales
+    "wheelbase": 1.040,               // ESTIMATE: common CIK senior chassis (range 1.01-1.07)
+    "frontTrack": 1.100,              // ASSUMPTION (setup)
+    "rearTrack": 1.220,               // ESTIMATE: CIK overall width max 1400 mm (VERIFIED) minus 180 mm rear tyre width (was 1.240: exceeded the rule)
+    "inertia": [14.0, 24.0, 32.0],    // ESTIMATE: radii of gyration 0.29/0.385/0.445 m
+    // Frame torsion as a chain of stations (Milestone 3). Node = [position behind front axle (m),
+    // roll inertia (kg m^2), mass (kg), mass height (m)]: front axle (wheels, spindles, pedals, feet),
+    // driver's legs + floor, seat + torso/head/arms, rear axle (axle, wheels, engine, bumper).
+    // ESTIMATE by component group; constrained (validated) to reproduce total mass, CoG height and
+    // weight distribution; roll inertias sum to inertia[0].
+    // Uniform frame, total front-to-rear stiffness 18000 Nm/rad (~314 Nm/deg, ESTIMATE from FEA
+    // literature 316.9 Nm/deg); segment stiffness = GJ / length.
+    "frame": {
+      "nodes": [[0.0, 2.8, 18.0, 0.12], [0.35, 1.2, 22.0, 0.15], [0.62, 4.5, 85.0, 0.3633], [1.04, 5.5, 37.0, 0.20]],
+      "torsionalStiffness": 18000.0,
+      "torsionalDamping": 70.0          // ASSUMPTION
+    },
+    "twistAxisHeight": 0.10,          // ESTIMATE: main frame rail height
+    "cdA": 0.60,                      // ASSUMPTION: coast-down test needed
+    "airDensity": 1.20
+  },
+
+  "steering": {
+    "ratio": 3.6,                     // ASSUMPTION (setup)
+    "maxColumnAngleDeg": 100.0,       // ASSUMPTION
+    "ackermannFactor": 0.7,           // ASSUMPTION (setup)
+    "casterDeg": 14.0,                // ASSUMPTION (setup)
+    "kingpinInclinationDeg": 10.0,    // ASSUMPTION
+    "spindleOffset": 0.085,           // ASSUMPTION
+    "staticToeDeg": 0.0,              // ASSUMPTION (setup)
+    "staticCamberDeg": 0.0            // ASSUMPTION (setup)
+  },
+
+  "tyres": {
+    "name": "Mojo D5 (dry slick)",
+    "front": {                        // Mojo D5 10x4.50-5 (VERIFIED size)
+      "unloadedRadius": 0.127,        // ESTIMATE: nominal 10 in diameter
+      "width": 0.114,                 // ESTIMATE: nominal 4.50 in
+      "spinInertia": 0.014,           // ESTIMATE
+      "radialStiffness": 110000.0,    // ESTIMATE: contact-area/pressure derivation at 0.6 bar
+      "radialDamping": 600.0, "bodyDamping": 600.0,  // ASSUMPTION: bodyDamping = the seated driver's damping, acting on the wheel's own vertical motion only (not on road bumps). Added after user telemetry 2026-11-17 showed KZ pogo-hopping at ~10 % critical damping.
+      "mu0": 1.95,                    // ASSUMPTION: needs tyre data
+      "refLoad": 330.0,               // ESTIMATE: static front corner load
+      "muLoadSensitivity": 0.16,      // ASSUMPTION
+      "cxCoeff": 24,                // ASSUMPTION
+      "cyCoeff": 26,                // ASSUMPTION
+      "stiffnessLoadExponent": 0.8,   // ASSUMPTION
+      "slideMuDrop": 0.08,            // ASSUMPTION
+      "slideRefSpeed": 6.0,           // ASSUMPTION
+      "relaxLengthX": 0.08,           // ASSUMPTION
+      "relaxLengthY": 0.14,           // ASSUMPTION
+      "rollingResistance": 0.020,     // ASSUMPTION
+      "camberStiffnessRatio": 0.15,   // ASSUMPTION: car-tyre range ~0.1-0.2; no kart data
+      "thermal": {
+        "optimumTemp": 50.0, "tempWindow": 40.0, "minTempGripFactor": 0.92,     // ASSUMPTION: no published D5 window (Mojo: no single optimum); mild until measured
+        "heatCapacity": 1800.0, "slideHeatFraction": 0.5,                       // ASSUMPTION
+        "convectionBase": 3.0, "convectionPerSpeed": 0.9, "trackConduction": 2.0, // ASSUMPTION
+        "initialTemp": 30.0
+      },
+      "wet": { "gripFloor": 0.60, "cooling": 8.0 },
+      "wear": { "treadDepth": 3.5, "rate": 4.0e-7, "tempDoubling": 15.0, "minGripFactor": 0.85 } // ASSUMPTION
+    },
+    "rear": {                         // Mojo D5 11x7.10-5 (VERIFIED size)
+      "unloadedRadius": 0.1397,       // ESTIMATE: nominal 11 in diameter
+      "width": 0.180,                 // ESTIMATE: nominal 7.10 in
+      "spinInertia": 0.0,             // unused: rear wheels are part of rear axle inertia
+      "radialStiffness": 190000.0,    // ESTIMATE
+      "radialDamping": 900.0, "bodyDamping": 900.0,  // ASSUMPTION (see front tyre)
+      "mu0": 1.95,                    // ASSUMPTION
+      "refLoad": 460.0,               // ESTIMATE: static rear corner load
+      "muLoadSensitivity": 0.07,      // ASSUMPTION
+      "cxCoeff": 30,                // ASSUMPTION
+      "cyCoeff": 36,                // ASSUMPTION
+      "stiffnessLoadExponent": 0.8,   // ASSUMPTION
+      "slideMuDrop": 0.08,            // ASSUMPTION
+      "slideRefSpeed": 6.0,           // ASSUMPTION
+      "relaxLengthX": 0.08,           // ASSUMPTION
+      "relaxLengthY": 0.16,           // ASSUMPTION
+      "rollingResistance": 0.020,     // ASSUMPTION
+      "camberStiffnessRatio": 0.15,   // ASSUMPTION: car-tyre range ~0.1-0.2; no kart data
+      "thermal": {
+        "optimumTemp": 50.0, "tempWindow": 40.0, "minTempGripFactor": 0.92,
+        "heatCapacity": 2600.0, "slideHeatFraction": 0.5,
+        "convectionBase": 4.0, "convectionPerSpeed": 1.2, "trackConduction": 3.0,
+        "initialTemp": 30.0
+      },
+      "wet": { "gripFloor": 0.60, "cooling": 8.0 },
+      "wear": { "treadDepth": 3.5, "rate": 4.0e-7, "tempDoubling": 15.0, "minGripFactor": 0.85 }
+    }
+  },
+
+  // Wet set: Mojo W5. VERIFIED (CIK homologation 050-TW-77, rear 11x6.00-5): diameter 276 mm, tread width 125 mm,
+  // tread depth 5 mm, service pressure 1.0 bar, hardness 45 IRHD (D5: 39.3), deflection under 40 kg V 2.0 / L 11.0 mm
+  // (D5 rear 050-TP-45: V 1.0 / L 12.0 mm, tolerances +-2 / +-1 mm). Front 10x4.50-5 (VERIFIED size, Rotax W5 page).
+  // ESTIMATE: rear width scaled by tread width (0.180 x 125/135). Radial stiffness kept = D5 (the sheet's V values do
+  // not resolve a difference within +-2 mm). ASSUMPTION (no wet-tyre force data): mu0 x0.90 and slip stiffness x0.85
+  // (tread-block flex) vs the slick, wet grip floor 0.85 (slick 0.60), window 35 +-30 C, wear doubling per 10 C
+  // above the window (grooved blocks tear when overheated on a dry line), tread depth front 5 mm as the rear.
+  "wetTyres": {
+    "name": "Mojo W5 (wet)",
+    "front": {
+      "unloadedRadius": 0.127,
+      "width": 0.114,
+      "spinInertia": 0.014,
+      "radialStiffness": 110000.0,
+      "radialDamping": 600.0, "bodyDamping": 600.0,
+      "mu0": 1.755,
+      "refLoad": 330.0,
+      "muLoadSensitivity": 0.16,
+      "cxCoeff": 20.4,
+      "cyCoeff": 22.1,
+      "stiffnessLoadExponent": 0.8,
+      "slideMuDrop": 0.12,
+      "slideRefSpeed": 6.0,
+      "relaxLengthX": 0.08,
+      "relaxLengthY": 0.14,
+      "rollingResistance": 0.020,
+      "camberStiffnessRatio": 0.15,
+      "thermal": {
+        "optimumTemp": 35.0, "tempWindow": 30.0, "minTempGripFactor": 0.80,
+        "heatCapacity": 1800.0, "slideHeatFraction": 0.6,
+        "convectionBase": 3.0, "convectionPerSpeed": 0.9, "trackConduction": 2.0,
+        "initialTemp": 30.0
+      },
+      "wet": { "gripFloor": 0.85, "cooling": 8.0 },
+      "wear": { "treadDepth": 5.0, "rate": 4.0e-7, "tempDoubling": 10.0, "minGripFactor": 0.85 }
+    },
+    "rear": {
+      "unloadedRadius": 0.138,
+      "width": 0.167,
+      "spinInertia": 0.0,
+      "radialStiffness": 190000.0,
+      "radialDamping": 900.0, "bodyDamping": 900.0,
+      "mu0": 1.755,
+      "refLoad": 460.0,
+      "muLoadSensitivity": 0.07,
+      "cxCoeff": 25.5,
+      "cyCoeff": 30.6,
+      "stiffnessLoadExponent": 0.8,
+      "slideMuDrop": 0.12,
+      "slideRefSpeed": 6.0,
+      "relaxLengthX": 0.08,
+      "relaxLengthY": 0.16,
+      "rollingResistance": 0.020,
+      "camberStiffnessRatio": 0.15,
+      "thermal": {
+        "optimumTemp": 35.0, "tempWindow": 30.0, "minTempGripFactor": 0.80,
+        "heatCapacity": 2600.0, "slideHeatFraction": 0.6,
+        "convectionBase": 4.0, "convectionPerSpeed": 1.2, "trackConduction": 3.0,
+        "initialTemp": 30.0
+      },
+      "wet": { "gripFloor": 0.85, "cooling": 8.0 },
+      "wear": { "treadDepth": 5.0, "rate": 4.0e-7, "tempDoubling": 10.0, "minGripFactor": 0.85 }
+    }
+  },
+
+  "engine": {
+    // WOT brake torque [rpm, Nm]. VERIFIED points: 21.0 Nm @ 9000 and 18.27 Nm @ 11500 (= 22 kW).
+    // All other points are an ESTIMATE shaped so that peak power stays at 11,500 rpm.
+    "torqueCurve": [
+      [ 1500,  4.0], [ 3000,  7.5], [ 4000,  9.0], [ 5000, 10.8], [ 6000, 12.8],
+      [ 7000, 15.6], [ 8000, 19.0], [ 9000, 21.0], [10000, 20.3], [10500, 19.7],
+      [11000, 18.9], [11500, 18.27], [12000, 17.2], [12500, 15.6], [13000, 13.8],
+      [13500, 11.8], [14000,  9.8], [14500,  7.5], [15000,  5.0]
+    ],
+    "inertia": 0.0030,                // ASSUMPTION: needs measurement
+    "idleRpm": 2500.0,                // ASSUMPTION
+    "idleControlGain": 2.0,
+    "idleMaxThrottle": 0.30,          // tuned so idle holds against drag torque
+    "revLimitRpm": 14800.0,           // ESTIMATE: two secondary sources (Wikipedia, distributor), not Rotax-official
+    "revLimitHysteresisRpm": 150.0,
+    "dragTorqueConst": 0.6,           // ASSUMPTION
+    "dragTorquePerRadS": 0.0025,      // ASSUMPTION
+    "throttleTimeConstant": 0.025,    // ASSUMPTION
+    "stallRpm": 1200.0,               // ASSUMPTION
+    "fireRpm": 1500.0,                // ASSUMPTION
+    "starterTorque": 6.0              // onboard e-starter: VERIFIED (exists, Rotax operator manual); torque ASSUMPTION
+  },
+
+  // Engine tuning / condition (EngineTune.h). Carb: Dellorto VHSB 34 XS (VERIFIED, Rotax operating manual), needle
+  // standard clip position 2 (VERIFIED, same manual). Main jet vs temperature: RADNE's EVO table (third party) 122 at
+  // >= 18 degC, 125 below 18, 128 below 10 -> best jet 122 at the 22 degC reference; density exponent 0.70 reproduces
+  // those steps and the IAME "+2-3 points per 6 degC" rule (ESTIMATE). Water window 50-55 degC (AiM sensor guide for
+  // Rotax). Radiator on the left of the seat. Heat / cooling / piston numbers: ESTIMATES / ASSUMPTIONS.
+  "tuning": {
+    "carb": "mainJet",
+    "jet": 122, "jetMin": 110, "jetMax": 140, "jetStep": 1,
+    "bestJetRef": 122, "refAirTemp": 22.0, "refPressure": 101.325, "refHumidity": 0.5,
+    "jetDensityExponent": 0.70, "flowExponent": 2.0,
+    "cooling": {
+      "type": "water", "cover": 0.0, "heatCapacity": 9000.0, "heatPerPower": 1.1, "idleHeat": 600.0,
+      "base": 35.0, "perSpeed": 20.5, "optimumLow": 50.0, "optimumHigh": 55.0,
+      "powerPerDegCold": 0.0015, "powerPerDegHot": 0.002, "warmTemp": 50.0
+    },
+    "piston": { "rise": 200.0, "limit": 275.0, "timeConstant": 3.0, "leanHeat": 4.0, "seizeRate": 0.033,
+                "coldPerDeg": 1.5, "seizedDragTorque": 80.0 },
+    "egt": { "idle": 250.0, "full": 620.0, "perLean": 1200.0, "perRich": 800.0, "timeConstant": 1.0 } // full: AiM guide 550-650 degC
+  },
+
+  // Mechanical damage (KartDamage.h). ALL ASSUMPTIONS, calibrated so clean laps over the kerbs do no damage
+  // (Tests/DamageTests.cpp) and a ~5 m/s hit bends parts by about a degree.
+  "damage": {
+    "contactForce": 9000.0,           // N kart-kart force above which parts bend
+    "sidepodForce": 5500.0,           // N side impact that knocks a sidepod loose (visual)
+    "bumperForce": 6500.0,            // N rear impact that pushes the rear bumper in (visual)
+    "fairingForce": 4500.0,           // N rearward on the nose that releases the CIK front fairing kit
+    "toePerImpulse": 0.0012,          // deg toe per N s of front-corner impulse above contactForce
+    "axleBendPerImpulse": 0.0015,    // deg axle bend per N s of rear impulse above contactForce
+    "radiatorLeakPerImpulse": 4.0e-5, // coolant fraction lost per s, per N s of radiator-side impulse
+    "radiatorSide": 1.0,
+    "wheelLoadFront": 6000.0,          // N front tyre load spike that bends a steering arm
+    "wheelLoadRear": 8000.0,           // N rear tyre load spike that bends the axle
+    "loadToePerKn": 0.2,
+    "loadBendPerKn": 0.15,
+    "maxToe": 2.5,
+    "maxAxleBend": 3.0,
+    "axleDragPerDeg": 3.0,            // Nm axle friction per deg of bend
+    "chainOffImpulse": 350.0,         // N s (filtered, above contactForce) single rear hit that throws the chain: ~25 km/h closing
+    "chainOffBend": 2.5,              // deg axle bend at which the chain jumps off (~3 hard hits)
+    "maxBendPerHit": 1.0              // deg most toe / axle bend one strike or hit adds
+  },
+
+  "clutch": {
+    "type": "centrifugal",            // VERIFIED (class)
+    "engageStartRpm": 3800.0,         // ASSUMPTION inside VERIFIED bound: Global RMC Tech Reg 2025 v3 s.2.2.1 "engagement at maximum 4.000 rpm (kart without driver must start to move)"; test Clutch_RegulationEngagementAt4000Rpm
+    "fullLockRpm": 5500.0,            // ASSUMPTION
+    "maxTorque": 55.0                 // ASSUMPTION
+  },
+
+  "gearbox": {
+    "ratios": [1.0],                  // single speed
+    "primaryRatio": 1.0,
+    "shiftCutTime": 0.0
+  },
+
+  "finalDrive": {
+    "engineSprocket": 12,             // ASSUMPTION (setup)
+    "axleSprocket": 80,               // ASSUMPTION (setup)
+    "chainEfficiency": 0.95,          // ESTIMATE
+    "rearAxleInertia": 0.075          // ESTIMATE
+  },
+
+  "brakes": {
+    "rearMaxTorque": 320.0,           // ESTIMATE
+    "frontMaxTorque": 0.0,            // VERIFIED (class): Senior MAX rear brake only
+    "discHeatCapacity": 900.0,        // ASSUMPTION
+    "discCoolingBase": 2.0,           // ASSUMPTION
+    "discCoolingPerSpeed": 0.6,       // ASSUMPTION
+    "fadeStartTemp": 450.0,           // ASSUMPTION
+    "fadePerDeg": 0.0015,             // ASSUMPTION
+    "initialTemp": 30.0
+  }
+}

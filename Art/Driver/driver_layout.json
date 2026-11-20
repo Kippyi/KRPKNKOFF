@@ -1,0 +1,57 @@
+{
+ "parts": [
+  {
+   "part": "Body",
+   "class": "suittex",
+   "asset": "Driver_Body",
+   "tris": 61325
+  },
+  {
+   "part": "Boots",
+   "class": "boottex",
+   "asset": "Driver_Boots",
+   "tris": 10780
+  },
+  {
+   "part": "ForearmL",
+   "class": "suittex",
+   "asset": "Driver_ForearmL",
+   "tris": 6671
+  },
+  {
+   "part": "ForearmR",
+   "class": "suittex",
+   "asset": "Driver_ForearmR",
+   "tris": 6520
+  },
+  {
+   "part": "Torso",
+   "class": "suittex",
+   "asset": "Driver_Torso",
+   "tris": 28781
+  },
+  {
+   "part": "UpperArmL",
+   "class": "suittex",
+   "asset": "Driver_UpperArmL",
+   "tris": 11926
+  },
+  {
+   "part": "UpperArmR",
+   "class": "suittex",
+   "asset": "Driver_UpperArmR",
+   "tris": 11804
+  },
+  {
+   "part": "Neck",
+   "class": "rubber",
+   "asset": "Driver_Neck",
+   "tris": 24
+  }
+ ],
+ "helmet": {
+  "asset": "Helmet_Arai"
+ },
+ "neckCut": 1.5200000000000002,
+ "helmetLift": 0.05
+}

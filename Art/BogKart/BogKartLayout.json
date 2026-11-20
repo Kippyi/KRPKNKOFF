@@ -1,0 +1,329 @@
+{
+  "note": "Measured from the FBX by Tools/SplitBogKart.py. Kart frame relative to the rear-axle centre (z = 0 at axle height).",
+  "hubs": {
+    "FL": [
+      1.0350887775421143,
+      0.5576819181442261,
+      -0.010962523519992828
+    ],
+    "FR": [
+      1.0356154441833496,
+      -0.5583280920982361,
+      -0.010961435735225677
+    ],
+    "RL": [
+      -5.960464477539063e-08,
+      0.5857692956924438,
+      0.0
+    ],
+    "RR": [
+      0.0,
+      -0.5883679389953613,
+      0.0
+    ]
+  },
+  "tyreRadius": {
+    "FL": 0.12798098765779287,
+    "FR": 0.12798192552872933,
+    "RL": 0.1523251235485077,
+    "RR": 0.1518835793249309
+  },
+  "wheelbase": 1.035088837146759,
+  "frontTrack": 1.1160100102424622,
+  "rearTrack": 1.1741372346878052,
+  "steerHub": [
+    0.7133886814117432,
+    -0.0002233329723821953,
+    0.3039873242378235
+  ],
+  "columnBase": [
+    1.0321400165557861,
+    -0.00022330667707137764,
+    -0.07542483508586884
+  ],
+  "columnAxis": [
+    -0.6432454586029053,
+    -5.305804151589655e-08,
+    0.7656599879264832
+  ],
+  "tieRods": {
+    "L": {
+      "outer": [
+        0.9229965209960938,
+        0.36527150869369507,
+        -0.0477946475148201
+      ],
+      "inner": [
+        0.943751335144043,
+        0.011325648985803127,
+        -0.02146090567111969
+      ]
+    },
+    "R": {
+      "outer": [
+        0.9229977130889893,
+        -0.369084894657135,
+        -0.047794491052627563
+      ],
+      "inner": [
+        0.9437515735626221,
+        -0.015138957649469376,
+        -0.021460995078086853
+      ]
+    }
+  },
+  "kingpins": {
+    "L": [
+      1.035811185836792,
+      0.3684973418712616,
+      -0.009976297616958618
+    ],
+    "R": [
+      1.035811185836792,
+      -0.3657917082309723,
+      -0.009976282715797424
+    ]
+  },
+  "parts": [
+    {
+      "part": "Body",
+      "class": "plastic",
+      "asset": "Body_plastic",
+      "tris": 6026
+    },
+    {
+      "part": "Body",
+      "class": "chrome",
+      "asset": "Body_chrome",
+      "tris": 4020
+    },
+    {
+      "part": "Body",
+      "class": "graphite",
+      "asset": "Body_graphite",
+      "tris": 22236
+    },
+    {
+      "part": "Body",
+      "class": "body",
+      "asset": "Body_body",
+      "tris": 98
+    },
+    {
+      "part": "Body",
+      "class": "skinfront",
+      "asset": "Body_skinfront",
+      "tris": 38304
+    },
+    {
+      "part": "Body",
+      "class": "chassis",
+      "asset": "Body_chassis",
+      "tris": 14881
+    },
+    {
+      "part": "Body",
+      "class": "alloy",
+      "asset": "Body_alloy",
+      "tris": 7518
+    },
+    {
+      "part": "Body",
+      "class": "anodized",
+      "asset": "Body_anodized",
+      "tris": 708
+    },
+    {
+      "part": "Body",
+      "class": "skinrear",
+      "asset": "Body_skinrear",
+      "tris": 2887
+    },
+    {
+      "part": "WheelFL",
+      "class": "rubber",
+      "asset": "WheelFL_rubber",
+      "tris": 3072
+    },
+    {
+      "part": "WheelFL",
+      "class": "alloy",
+      "asset": "WheelFL_alloy",
+      "tris": 3215
+    },
+    {
+      "part": "WheelFL",
+      "class": "anodized",
+      "asset": "WheelFL_anodized",
+      "tris": 268
+    },
+    {
+      "part": "WheelFL",
+      "class": "chrome",
+      "asset": "WheelFL_chrome",
+      "tris": 78
+    },
+    {
+      "part": "WheelFR",
+      "class": "rubber",
+      "asset": "WheelFR_rubber",
+      "tris": 3072
+    },
+    {
+      "part": "WheelFR",
+      "class": "alloy",
+      "asset": "WheelFR_alloy",
+      "tris": 3215
+    },
+    {
+      "part": "WheelFR",
+      "class": "anodized",
+      "asset": "WheelFR_anodized",
+      "tris": 268
+    },
+    {
+      "part": "WheelFR",
+      "class": "chrome",
+      "asset": "WheelFR_chrome",
+      "tris": 78
+    },
+    {
+      "part": "WheelRL",
+      "class": "rubber",
+      "asset": "WheelRL_rubber",
+      "tris": 3072
+    },
+    {
+      "part": "WheelRL",
+      "class": "alloy",
+      "asset": "WheelRL_alloy",
+      "tris": 3182
+    },
+    {
+      "part": "WheelRR",
+      "class": "rubber",
+      "asset": "WheelRR_rubber",
+      "tris": 3072
+    },
+    {
+      "part": "WheelRR",
+      "class": "alloy",
+      "asset": "WheelRR_alloy",
+      "tris": 3182
+    },
+    {
+      "part": "Steer",
+      "class": "graphite",
+      "asset": "Steer_graphite",
+      "tris": 644
+    },
+    {
+      "part": "Steer",
+      "class": "swgrip",
+      "asset": "Steer_swgrip",
+      "tris": 2017
+    },
+    {
+      "part": "Steer",
+      "class": "swbase",
+      "asset": "Steer_swbase",
+      "tris": 1134
+    },
+    {
+      "part": "Steer",
+      "class": "chrome",
+      "asset": "Steer_chrome",
+      "tris": 84
+    },
+    {
+      "part": "Steer",
+      "class": "display",
+      "asset": "Steer_display",
+      "tris": 1343
+    },
+    {
+      "part": "SpindleL",
+      "class": "anodized",
+      "asset": "SpindleL_anodized",
+      "tris": 400
+    },
+    {
+      "part": "SpindleL",
+      "class": "chrome",
+      "asset": "SpindleL_chrome",
+      "tris": 632
+    },
+    {
+      "part": "SpindleR",
+      "class": "anodized",
+      "asset": "SpindleR_anodized",
+      "tris": 400
+    },
+    {
+      "part": "SpindleR",
+      "class": "chrome",
+      "asset": "SpindleR_chrome",
+      "tris": 632
+    },
+    {
+      "part": "RearSpin",
+      "class": "chrome",
+      "asset": "RearSpin_chrome",
+      "tris": 14516
+    },
+    {
+      "part": "TieRodL",
+      "class": "graphite",
+      "asset": "TieRodL_graphite",
+      "tris": 18
+    },
+    {
+      "part": "TieRodL",
+      "class": "anodized",
+      "asset": "TieRodL_anodized",
+      "tris": 64
+    },
+    {
+      "part": "TieRodL",
+      "class": "alloy",
+      "asset": "TieRodL_alloy",
+      "tris": 650
+    },
+    {
+      "part": "TieRodR",
+      "class": "graphite",
+      "asset": "TieRodR_graphite",
+      "tris": 18
+    },
+    {
+      "part": "TieRodR",
+      "class": "anodized",
+      "asset": "TieRodR_anodized",
+      "tris": 64
+    },
+    {
+      "part": "TieRodR",
+      "class": "alloy",
+      "asset": "TieRodR_alloy",
+      "tris": 650
+    },
+    {
+      "part": "Nose",
+      "class": "skinfront",
+      "asset": "Nose_skinfront",
+      "tris": 30072
+    },
+    {
+      "part": "SidepodL",
+      "class": "skinside",
+      "asset": "SidepodL_skinside",
+      "tris": 10280
+    },
+    {
+      "part": "SidepodR",
+      "class": "skinside",
+      "asset": "SidepodR_skinside",
+      "tris": 10248
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+# Unreal build output and caches (regenerated)
+Binaries/
+Build/
+DerivedDataCache/
+Intermediate/
+Saved/
+.vs/
+*.sln
+*.VC.db
+*.opensdf
+*.sdf
+*.suo
+
+# Python environments / caches
+Tools/License/.venv/
+__pycache__/
+*.pyc
+
+# SECRET: AES key of the encrypted tester paks. Keep your own backup of this file.
+Config/DefaultCrypto.ini
+
+# KRP's protected package (third party, encrypted): never upload
+*.pkz
